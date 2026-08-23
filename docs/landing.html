@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChatGPT Export Viewer: read your ChatGPT data export offline</title>
+<meta name="description" content="Turn a ChatGPT data export into a local static site with full-text search, inline images and rendered LaTeX. Reads exports split into conversations-000.json shards and attachments saved without a file extension.">
+<link rel="canonical" href="https://gusarovv.github.io/chatgpt-export-viewer/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ChatGPT Export Viewer">
+<meta property="og:title" content="ChatGPT Export Viewer: read your ChatGPT data export offline">
+<meta property="og:description" content="Full-text search across every message, inline images, rendered LaTeX. Handles conversations-000.json shards and extension-less attachments.">
+<meta property="og:url" content="https://gusarovv.github.io/chatgpt-export-viewer/">
+<meta property="og:image" content="https://gusarovv.github.io/chatgpt-export-viewer/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ChatGPT Export Viewer",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows, macOS, Linux",
+  "description": "Builds a local static site from a ChatGPT data export, with full-text search, inline images and rendered LaTeX.",
+  "url": "https://gusarovv.github.io/chatgpt-export-viewer/",
+  "codeRepository": "https://github.com/Gusarovv/chatgpt-export-viewer",
+  "license": "https://opensource.org/licenses/MIT",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+:root {
+  --canvas:#0d1117; --subtle:#161b22; --border:#30363d;
+  --fg:#e6edf3; --muted:#9198a1; --accent:#4493f8; --code:#010409;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --canvas:#ffffff; --subtle:#f6f8fa; --border:#d1d9e0;
+    --fg:#1f2328; --muted:#59636e; --accent:#0969da; --code:#f6f8fa;
+  }
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--canvas); color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap { max-width:860px; margin:0 auto; padding:0 24px; }
+header { padding:72px 0 40px; }
+h1 { font-size:40px; line-height:1.2; margin:0 0 16px; letter-spacing:-.02em; }
+.lead { font-size:19px; color:var(--muted); margin:0 0 32px; max-width:640px; }
+.cta { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:12px; }
+.btn {
+  display:inline-block; padding:11px 20px; border-radius:6px; font-weight:600;
+  text-decoration:none; border:1px solid var(--border);
+}
+.btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+.btn.ghost { color:var(--fg); background:var(--subtle); }
+.btn:hover { text-decoration:none; opacity:.9; }
+.note { font-size:14px; color:var(--muted); margin:0; }
+h2 { font-size:24px; margin:56px 0 16px; letter-spacing:-.01em; }
+p { margin:0 0 16px; }
+a { color:var(--accent); }
+code {
+  font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  background:var(--subtle); padding:2px 6px; border-radius:4px;
+}
+pre {
+  background:var(--code); border:1px solid var(--border); border-radius:8px;
+  padding:16px 18px; overflow-x:auto; margin:0 0 16px;
+}
+pre code { background:none; padding:0; font-size:13.5px; }
+ul { padding-left:22px; margin:0 0 16px; }
+li { margin-bottom:8px; }
+figure { margin:28px 0; }
+figure img {
+  width:100%; height:auto; display:block;
+  border:1px solid var(--border); border-radius:8px;
+}
+figcaption { font-size:14px; color:var(--muted); margin-top:10px; }
+footer {
+  margin-top:72px; padding:28px 0 56px; border-top:1px solid var(--border);
+  font-size:14px; color:var(--muted);
+}
+@media (max-width:640px) {
+  header { padding:48px 0 32px; }
+  h1 { font-size:31px; }
+  .lead { font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Read your ChatGPT export offline</h1>
+  <p class="lead">You asked ChatGPT for your data and got a ZIP full of unreadable JSON.
+  This turns it into a local static site: full-text search across every message, images
+  inline, LaTeX rendered. No upload, no server, no account.</p>
+  <div class="cta">
+    <a class="btn primary" href="site/index.html">Open the demo archive</a>
+    <a class="btn ghost" href="https://github.com/Gusarovv/chatgpt-export-viewer">View on GitHub</a>
+  </div>
+  <p class="note">The demo is a generated archive of invented conversations. Your own export never leaves your machine.</p>
+</header>
+
+<main>
+
+<h2>Your export arrived as conversations-000.json</h2>
+<p>If your history is large, OpenAI no longer ships a single <code>conversations.json</code>.
+It arrives split into <code>conversations-000.json</code>, <code>conversations-001.json</code> and so on,
+sometimes inside a nested ZIP. Viewers that look for one exact filename quietly show you a
+fraction of your history, or nothing at all.</p>
+<p>This tool finds every shard through <code>export_manifest.json</code>, falls back to matching the
+filename pattern, and opens the inner archive that a Privacy Portal export wraps them in. Each file
+is streamed, so a 300 MB single-line JSON never lands in memory whole.</p>
+
+<h2>What the ZIP does not tell you</h2>
+<ul>
+  <li><code>chat.html</code> dumps every conversation onto one page with no search.</li>
+  <li>Attachments are named <code>file_0a1b2c3d.dat</code> with no extension, so nothing opens them. Extensions get restored from file signatures.</li>
+  <li>Exports routinely reference images they do not contain. You get a report of what is missing and which conversations lost the most.</li>
+  <li>Conversations are trees, not lists. The thread is rebuilt from <code>current_node</code> back through parent links, so edits and regenerations do not scramble the order.</li>
+</ul>
+
+<figure>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="shots/screenshot-search-dark.png">
+    <img src="shots/screenshot-search-light.png" alt="Full-text search across a ChatGPT archive with the matching sentence highlighted under each result" width="1440" height="900" loading="lazy">
+  </picture>
+  <figcaption>Search runs over everything you and the model wrote, with the matching sentence under each hit.</figcaption>
+</figure>
+
+<h2>Run it</h2>
+<p>Python 3.8 or newer, no dependencies.</p>
+<pre><code>git clone https://github.com/Gusarovv/chatgpt-export-viewer.git
+cd chatgpt-export-viewer
+python3 build_site.py ~/Downloads/your-export.zip</code></pre>
+<p>The site lands next to the export. Open <code>index.html</code> and read your archive the way you
+read a website. Copy the folder to a USB stick and it still works.</p>
+
+<figure>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="shots/screenshot-conversation-dark.png">
+    <img src="shots/screenshot-conversation-light.png" alt="A ChatGPT conversation rendered as a static page with an inline image and collapsed reasoning steps" width="1440" height="900" loading="lazy">
+  </picture>
+  <figcaption>Reasoning and tool steps fold into one collapsible block per turn instead of being dropped.</figcaption>
+</figure>
+
+</main>
+
+<footer>
+  MIT licensed. <a href="https://github.com/Gusarovv/chatgpt-export-viewer">Source on GitHub</a>.
+</footer>
+
+</div>
+</body>
+</html>
