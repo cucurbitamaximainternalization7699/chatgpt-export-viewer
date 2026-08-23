@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+
+*-site/
+*-archive/
+site/
+files/
+export/
+missing-files.txt
+
+*.zip
+conversations*.json
+export_manifest.json
+conversation_asset_file_names.json
+user.json
+chat.html
