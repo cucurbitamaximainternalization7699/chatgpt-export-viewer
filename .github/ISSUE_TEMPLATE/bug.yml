@@ -1,0 +1,38 @@
+name: Bug report
+description: Something in the generated site looks or behaves wrong
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      placeholder: Images render at full width on narrow screens
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to reproduce
+      description: If it happens with the demo export, say so, that makes it easy to fix.
+      placeholder: |
+        1. python3 tests/make_demo_export.py demo-export.zip
+        2. python3 build_site.py demo-export.zip
+        3. open demo-export-site/site/index.html
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, OS and Python version
+      placeholder: Firefox 141, macOS 15, Python 3.13
+    validations:
+      required: true
+
+  - type: input
+    id: size
+    attributes:
+      label: Archive size
+      description: Number of conversations and the size of the ZIP, if relevant.
+      placeholder: 2800 conversations, 1.9 GB
