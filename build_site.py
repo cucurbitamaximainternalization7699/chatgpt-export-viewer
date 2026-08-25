@@ -1698,11 +1698,32 @@ function search() {
   });
 }
 
+function queryFromUrl() {
+  var match = location.search.match(/[?&]q=([^&]*)/);
+  if (!match) return '';
+  try { return decodeURIComponent(match[1].replace(/\\+/g, ' ')); } catch (err) { return ''; }
+}
+
+// Запрос попадает в адресную строку, чтобы ссылкой на найденное можно было
+// поделиться. На file:// история недоступна, поэтому промах не должен ломать поиск
+function syncUrl(value) {
+  if (!history.replaceState) return;
+  try {
+    var query = value ? '?q=' + encodeURIComponent(value) : '';
+    history.replaceState(null, '', location.pathname + query + location.hash);
+  } catch (err) {}
+}
+
 box.addEventListener('input', function () {
   clearTimeout(timer);
-  timer = setTimeout(search, 160);
+  timer = setTimeout(function () {
+    syncUrl(box.value.trim());
+    search();
+  }, 160);
 });
 
+var fromUrl = queryFromUrl();
+if (fromUrl && !box.value.trim()) { box.value = fromUrl; }
 if (box.value.trim()) { search(); }
 """
     app = app.replace('__ICON_MSG__', ICON_MSG).replace('__ICON_PIC__', ICON_PIC)
