@@ -83,7 +83,7 @@ python3 tests/make_demo_export.py demo-export.zip
 python3 build_site.py demo-export.zip
 ```
 
-That gives you 32 conversations with images, math, code and a deliberately missing attachment.
+That gives you 450 conversations spread over three years, with images, math, code, tables, tool steps and a deliberately missing attachment. Pass `--conversations N` to the generator for a smaller or larger archive.
 
 ## Limitations
 

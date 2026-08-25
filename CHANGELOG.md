@@ -16,4 +16,6 @@ First public release.
 - Dark and light themes, three reading widths, month navigation, per-conversation table of contents
 - Muted and warning colours meet the WCAG AA contrast ratio in both themes
 - Optional `--seo <base-url>` adds a description, canonical link and Open Graph tags for a public build; a personal archive is generated without them
+- Search accepts a query in the URL (`index.html?q=postgres`) and keeps the address in sync, so a search can be linked to and shared
+- The demo generator builds 450 conversations across three years ending today, with code, maths, tables, images and two long threads, instead of a 32 conversation sample
 - 37 edge-case tests covering broken, truncated and unusual exports, including HTML injection and multibyte text split across read boundaries
