@@ -4,6 +4,13 @@ on:
   workflow_dispatch:
   release:
     types: [published]
+  push:
+    branches: [main]
+    paths:
+      - build_site.py
+      - tests/make_demo_export.py
+      - docs/landing.html
+      - .github/workflows/demo.yml
 
 permissions:
   contents: read
